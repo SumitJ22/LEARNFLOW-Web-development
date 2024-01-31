@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <title>Courses - LearnOnline</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        header,
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        main {
+            padding: 20px;
+            margin: auto;
+            max-width: 800px;
+            /* Restrict max width for better readability */
+        }
+
+        h1 {
+            text-align: center;
+            color: #0077cc;
+        }
+
+        #courses-list {
+            padding: 0;
+        }
+
+        .course-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .course-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-description {
+            margin-right: 20px;
+        }
+
+        .course-description h2 {
+            color: #0077cc;
+            margin: 0 0 10px 0;
+        }
+
+        .course-description p {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+        }
+
+        .video-player {
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .enroll-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .enroll-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+    </header>
+
+    <main>
+        <h1>Our Courses</h1>
+        <div id="courses-list">
+            {% for course in courses %}
+            <div class="course-item">
+                <div class="course-description">
+                    <h2>{{ course.title }}</h2>
+                    <p>{{ course.description }}</p>
+                    <p>{{ course.content }}</p>
+                    <!-- Video Player -->
+                    {% if course.link %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ url_for('static', filename=course.link) }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% endif %}
+                </div>
+                {% if session.get('username') %}
+                <form action="{{ url_for('enroll') }}" method="post">
+                    <input type="hidden" name="course_id" value="{{ course.id }}">
+                    <button type="submit" class="enroll-btn">Enroll Now</button>
+                </form>
+                {% else %}
+                <a href="{{ url_for('login') }}" class="enroll-btn">Log in to Enroll</a>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+
+<script>
+    window.onload = function() {
+        console.log("Script loaded");
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('enrolled')) {
+            console.log("Enrolled parameter found");
+            Swal.fire({
+                title: 'Success!',
+                text: 'You are enrolled in the course',
+                icon: 'success',
+                confirmButtonText: 'Great'
+            });
+        }
+    };
+</script>
+
+</html>

@@ -1,60 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Add New Course - LearnOnline</title>
-
-     <style>
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        form label, form input, form textarea, form button {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        form button {
-            background-color: #0077cc;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        form button:hover {
-            background-color: #005fa3;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Create New Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/newcourse.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 </head>
 <body>
-    <header>
 
-    </header>
+<nav class="navbar">
+    <div class="logo"><a href="/">LearnHub</a></div>
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/courses">Courses</a></li>
+        {% if 'username' in session %}
+            <li><a href="/logout">Logout ({{ session['username'] }})</a></li>
+        {% else %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="/sign_up">Sign Up</a></li>
+        {% endif %}
+    </ul>
+</nav>
 
-    <main>
-        <h1>Add New Course</h1>
-        <form action="{{ url_for('add_course') }}" method="post" enctype="multipart/form-data">
-            <label for="title">Course Title:</label>
-            <input type="text" id="title" name="title" required><br><br>
+<div class="container">
+    <h2>Create a New Course</h2>
+    <p>Share your knowledge by uploading a new course!</p>
 
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" required></textarea><br><br>
+    {% if 'user_id' in session %}
+        <form action="/newcourse" method="POST" enctype="multipart/form-data" class="course-form">
+            <div class="input-group">
+                <i class="fas fa-book"></i>
+                <input type="text" name="title" placeholder="Course Title" required />
+            </div>
 
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" required></textarea><br><br>
+            <div class="input-group">
+                <i class="fas fa-align-left"></i>
+                <textarea name="description" placeholder="Course Description" rows="4" required></textarea>
+            </div>
 
-            <label for="video">Course Video (optional):</label>
-            <input type="file" id="video" name="video" accept="video/*"><br><br>
+            <div class="input-group file-input">
+                <i class="fas fa-upload"></i>
+                <input type="file" name="video" accept="video/mp4" required />
+            </div>
 
-            <input type="submit" value="Submit">
+            <button type="submit" class="btn">Upload Course</button>
         </form>
-    </main>
+    {% else %}
+        <p><a href="/login" class="btn">Login to Create a Course</a></p>
+    {% endif %}
+</div>
 
-    <footer>
-
-    </footer>
 </body>
 </html>

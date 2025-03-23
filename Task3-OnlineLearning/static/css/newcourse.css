@@ -1,0 +1,166 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.logo a {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #00b09b;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #333333;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+    color: #00b09b;
+}
+
+/* Container */
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.8s ease;
+}
+
+.container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.container p {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666666;
+}
+
+/* Form styles */
+.course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    position: relative;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.input-group textarea {
+    border-radius: 20px;
+    resize: vertical;
+    padding-left: 45px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #4facfe;
+    box-shadow: 0 0 5px rgba(79, 172, 254, 0.5);
+}
+
+.file-input input {
+    padding-left: 45px;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 12px;
+    width: 100%;
+    background-color: #4facfe;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.btn:hover {
+    background-color: #00b09b;
+    transform: translateY(-3px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .container {
+        margin: 20px;
+        padding: 30px 20px;
+    }
+}

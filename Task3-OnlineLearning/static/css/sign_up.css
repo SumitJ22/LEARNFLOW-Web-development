@@ -1,0 +1,139 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+}
+
+/* Signup container */
+.signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* Signup card */
+.signup-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    animation: slideIn 0.8s ease;
+}
+
+.title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333333;
+}
+
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666666;
+}
+
+/* Input groups */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #00b09b;
+    box-shadow: 0 0 5px rgba(0, 176, 155, 0.5);
+}
+
+/* Register button */
+.btn {
+    display: inline-block;
+    width: 100%;
+    padding: 12px;
+    background-color: #00b09b;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 15px rgba(0, 176, 155, 0.4);
+}
+
+.btn:hover {
+    background-color: #028d80;
+    transform: translateY(-3px);
+}
+
+/* Login text */
+.login-text {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #00b09b;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-text a:hover {
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .signup-card {
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+}
